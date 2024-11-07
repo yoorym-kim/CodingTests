@@ -1,0 +1,24 @@
+/// 딥다이브 선발평가 : [사전테스트][난이도 1] 행렬식 구하기
+
+import java.io.*;
+import java.util.*;
+
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
+		
+		st = new StringTokenizer(br.readLine()," ");
+		
+		//행렬 생성 후 각 원소 입력
+		int[] matrix = new int[4];
+		for(int i=0;i<4;i++){
+			matrix[i] = Integer.parseInt(st.nextToken());
+		}
+		
+		int result = matrix[0]*matrix[3]-matrix[1]*matrix[2];
+		
+		System.out.println(result);
+	}
+}
