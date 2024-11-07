@@ -1,0 +1,81 @@
+/// 구름톤 딥다이브 선발평가 : [사전테스트][난이도 2] 업다운 챌린지
+
+
+import java.io.*;
+import java.util.*;
+
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
+		
+		st = new StringTokenizer(br.readLine()," ");
+		
+		int N = Integer.parseInt(st.nextToken());
+		int K = Integer.parseInt(st.nextToken());
+		
+		st = new StringTokenizer(br.readLine()," ");
+		
+		int[] players = new int[N];
+		
+		for(int i=0;i<N;i++) {
+			players[i] = Integer.parseInt(st.nextToken());
+		}
+		
+		//K라운드 동안 게임 반복
+	  for(int i=0;i<K;i++){
+			st = new StringTokenizer(br.readLine()," ");
+			
+			int x = Integer.parseInt(st.nextToken());
+			int c = Integer.parseInt(st.nextToken());
+			
+			//게임 실행 후 남은 플레이어수를 num에 저장
+			players = playGame(players, x, c);
+			int num = remainingPlayer(players); 
+			
+			//게임 종료 조건시 남은 플레이어수 반환 후 종료
+			if(num==0 || i==(K-1)){
+				System.out.println(num);
+				break;
+			}
+		}
+	}
+	
+	//게임 실행 메서드
+	private static int[] playGame(int[] players, int x, int c) {
+		int n = players.length;
+		
+		if(c==1){
+			for(int i=0;i<n;i++){
+				if(players[i]<=x){
+					players[i]=0;
+				}
+			}
+		}
+		if(c==0){
+			for(int i=0;i<n;i++){
+				if(players[i]>=x){
+					players[i]=0;
+				}
+			}
+		}
+		
+		return players;
+		
+	}
+	
+	//남은 플레이어수 반환 메서드
+	private static int remainingPlayer(int[] players){
+		int n = players.length;
+		
+		int count = n;
+		for(int i=0;i<n;i++){
+			if(players[i]==0){
+				count--;
+			}
+		}
+		return count;
+	}
+
+}
