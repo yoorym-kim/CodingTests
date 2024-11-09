@@ -1,0 +1,66 @@
+
+//구름톤 딥다이브 선발평가 : [기본]가장 가까운 점 찾기
+
+import java.io.*;
+import java.util.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
+		
+		st = new StringTokenizer(br.readLine()," ");
+		
+		int N = Integer.parseInt(st.nextToken());
+		int Q = Integer.parseInt(st.nextToken());
+		
+		st = new StringTokenizer(br.readLine()," ");
+		
+		long[] dots = new long[N];
+		
+		for(int i=0;i<N;i++){
+			dots[i] = Long.parseLong(st.nextToken());
+		}
+		
+		long sum =0;
+		for(int i=0;i<Q;i++){
+			long p = Long.parseLong(br.readLine());
+			sum += dots[closest(dots,p)];
+		}
+		
+		System.out.println(sum);
+	}
+	
+	private static int closest(long[] dots, long p){
+		int n = dots.length;
+		long[] arr = new long[n];
+		arr = widthArray(dots,p);
+		
+		int num = 0;
+		long min = arr[num];
+		for(int i=1;i<n;i++){
+			if(arr[num]>arr[i]){
+				num = i;
+			}
+		}
+		return num;
+	}
+	
+	private static long[] widthArray(long[] dots, long p){
+		int n = dots.length;
+		long[] arr = new long[n];
+		
+		for(int i=0;i<n;i++){		
+			if(dots[i]<p){
+				 arr[i] = p-dots[i];
+			}
+			if(dots[i]>=p){
+				arr[i] = dots[i]-p;
+			}
+		}
+		
+		return arr;
+		
+	}
+	
+}
