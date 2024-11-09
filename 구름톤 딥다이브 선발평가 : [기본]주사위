@@ -1,0 +1,70 @@
+
+//구름톤 딥다이브 선발평가 : [기본]주사위
+
+import java.io.*;
+import java.util.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
+		
+		//주사위의 면 수 N, 목표값 T 받기
+		st = new StringTokenizer(br.readLine()," ");
+		
+		int N = Integer.parseInt(st.nextToken());
+		int T = Integer.parseInt(st.nextToken());
+		
+		
+		//주사위 만들기
+		int[] dice = new int[N];
+		
+		st = new StringTokenizer(br.readLine()," ");
+		
+		for(int i=0;i<N;i++){
+			dice[i]=Integer.parseInt(st.nextToken());
+		}
+		
+		System.out.println(maximum(dice, T)+" "+minimum(dice, T));
+		
+	}
+	
+	private static int minimum(int[] dice, int T){
+		int n = dice.length;
+	
+		int min = 101;
+		
+		for(int i=0;i<n;i++){
+			if(min>dice[i]){
+				min = dice[i];
+			}
+		}
+		
+		if(T%min==0){
+			return T/min;
+		}
+		else{
+			return T/min+1;
+		}
+		
+	}
+	
+	private static int maximum(int[] dice, int T){
+		int n = dice.length;
+		
+		int max = 0;
+		
+		for(int i=0;i<n;i++){
+			if(max<dice[i]){
+				max = dice[i];
+			}
+		}
+		
+		if(T%max==0){
+			return T/max;
+		}
+		else{
+			return T/max+1;
+		}
+	}
+}
