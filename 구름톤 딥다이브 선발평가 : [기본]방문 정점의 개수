@@ -1,0 +1,42 @@
+
+//구름톤 딥다이브 선발평가 : [기본]방문 정점의 개수
+
+import java.io.*;
+import java.util.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
+		
+		st = new StringTokenizer(br.readLine()," ");
+		
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		int K = Integer.parseInt(st.nextToken());
+		
+		int[] arrows = new int[2*M];
+		for(int i=0;i<2*M;i+=2){
+			st = new StringTokenizer(br.readLine()," ");
+			arrows[i]= Integer.parseInt(st.nextToken()); //i+1번째 간선의 시작점 s
+			arrows[i+1]=Integer.parseInt(st.nextToken()); //i+1번째 간선의 끝점 e
+		}
+		
+		System.out.println(calculate(arrows, K, M));
+		
+	}
+	
+	private static int calculate(int[] arrows, int K, int M){
+		int num = 1;
+		int dot = K;
+		
+		for(int i=0;i<2*M;i+=2){
+			if(arrows[i]==dot){
+				dot = arrows[i+1];
+				num++;
+			}
+		}
+		
+		return num;
+	}
+}
