@@ -9,12 +9,12 @@ public class Main {
         byte max = 0;
 
         do {
+            i++;
             byte num = Byte.parseByte(br.readLine());
             if (max <= num ) {
                 max = num;
-                j = i+1;
+                j = i;
             }
-            i++;
         } while (i < 9);
 
         System.out.println(max);
