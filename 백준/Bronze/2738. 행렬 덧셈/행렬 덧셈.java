@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -13,21 +11,21 @@ public class Main {
 
         int[][] A = new int[N][M];
         int[][] B = new int[N][M];
-        
+
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < M; j++) {
                 A[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        
+
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < M; j++) {
                 B[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        
+
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
